@@ -1,0 +1,229 @@
+{{- if eq .Values.cloudprovider "amazonec2" }}
+{{- range $index, $nodepool := .Values.nodepools }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: Amazonec2Config
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+{{- if $nodepool.ami }}
+ami: {{ $nodepool.ami }}
+{{- end }}
+{{- if $nodepool.blockDurationMinutes }}
+blockDurationMinutes: {{ $nodepool.blockDurationMinutes }}
+{{- end }}
+{{- if $nodepool.deviceName }}
+deviceName: {{ $nodepool.deviceName }}
+{{- end }}
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+{{- if $nodepool.encryptEbsVolume }}
+encryptEbsVolume: {{ $nodepool.encryptEbsVolume }}
+{{- end }}
+{{- if $nodepool.endpoint }}
+endpoint: {{ $nodepool.endpoint }}
+{{- end }}
+{{- if $nodepool.iamInstanceProfile }}
+iamInstanceProfile: {{ $nodepool.iamInstanceProfile }}
+{{- end }}
+{{- if $nodepool.insecureTransport }}
+insecureTransport: {{ $nodepool.insecureTransport }}
+{{- end }}
+{{- if $nodepool.instanceType }}
+instanceType: {{ $nodepool.instanceType }}
+{{- end }}
+{{- if $nodepool.keypairName }}
+keypairName: {{ $nodepool.keypairName }}
+{{- end }}
+{{- if $nodepool.monitoring }}
+monitoring: {{ $nodepool.monitoring }}
+{{- end }}
+{{- if $nodepool.openPort}}
+openPort: 
+{{- range $i, $port := $nodepool.openPort }}
+- {{ $port }}
+{{- end }}
+{{- end }}
+{{- if $nodepool.privateAddressOnly }}
+privateAddressOnly: {{ $nodepool.privateAddressOnly }}
+{{- end }}
+{{- if $nodepool.region }}
+region: {{ $nodepool.region }}
+{{- end }}
+{{- if $nodepool.requestSpotInstance }}
+requestSpotInstance: {{ $nodepool.requestSpotInstance }}
+{{- end }}
+{{- if $nodepool.retries }}
+retries: {{ $nodepool.retries }}
+{{- end }}
+{{- if $nodepool.rootSize }}
+rootSize: {{ $nodepool.rootSize }}
+{{- end }}
+securityGroup:
+{{- if $nodepool.createSecurityGroup }}
+- rancher-nodes
+{{- else }}
+{{ toYaml $nodepool.securityGroups }}
+{{- end }}
+{{- if $nodepool.securityGroupReadonly }}
+securityGroupReadonly: {{ $nodepool.securityGroupReadonly }}
+{{- end }}
+{{- if $nodepool.sessionToken }}
+sessionToken: {{ $nodepool.sessionToken }}
+{{- end }}
+{{- if $nodepool.spotPrice }}
+spotPrice: {{ $nodepool.spotPrice }}
+{{- end }}
+{{- if $nodepool.sshKeyContents }}
+sshKeyContents: {{ $nodepool.sshKeyContents }}
+{{- end }}
+{{- if $nodepool.sshUser }}
+sshUser: {{ $nodepool.sshUser }}
+{{- end }}
+{{- if $nodepool.subnetId }}
+subnetId: {{ $nodepool.subnetId }}
+{{- end }}
+{{- if $nodepool.tags }}
+tags: {{ $nodepool.tags }}
+{{- end }}
+{{- if $nodepool.useEbsOptimizedInstance }}
+useEbsOptimizedInstance: {{ $nodepool.useEbsOptimizedInstance }}
+{{- end }}
+{{- if $nodepool.usePrivateAddress }}
+usePrivateAddress: {{ $nodepool.usePrivateAddress }}
+{{- end }}
+{{- if $nodepool.userdata }}
+userdata: {{ $nodepool.userdata }}
+{{- end }}
+{{- if $nodepool.volumeType }}
+volumeType: {{ $nodepool.volumeType }}
+{{- end }}
+{{- if $nodepool.vpcId }}
+vpcId: {{ $nodepool.vpcId }}
+{{- end }}
+{{- if $nodepool.zone }}
+zone: {{ $nodepool.zone }}
+{{- end }}
+---
+{{- end }}
+{{ $nodepool := .Values.nodepool }}
+{{- if $nodepool }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: Amazonec2Config
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+{{- if $nodepool.ami }}
+ami: {{ $nodepool.ami }}
+{{- end }}
+{{- if $nodepool.blockDurationMinutes }}
+blockDurationMinutes: {{ $nodepool.blockDurationMinutes }}
+{{- end }}
+{{- if $nodepool.deviceName }}
+deviceName: {{ $nodepool.deviceName }}
+{{- end }}
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+{{- if $nodepool.encryptEbsVolume }}
+encryptEbsVolume: {{ $nodepool.encryptEbsVolume }}
+{{- end }}
+{{- if $nodepool.endpoint }}
+endpoint: {{ $nodepool.endpoint }}
+{{- end }}
+{{- if $nodepool.iamInstanceProfile }}
+iamInstanceProfile: {{ $nodepool.iamInstanceProfile }}
+{{- end }}
+{{- if $nodepool.insecureTransport }}
+insecureTransport: {{ $nodepool.insecureTransport }}
+{{- end }}
+{{- if $nodepool.instanceType }}
+instanceType: {{ $nodepool.instanceType }}
+{{- end }}
+{{- if $nodepool.keypairName }}
+keypairName: {{ $nodepool.keypairName }}
+{{- end }}
+{{- if $nodepool.monitoring }}
+monitoring: {{ $nodepool.monitoring }}
+{{- end }}
+{{- if $nodepool.openPort}}
+openPort: 
+{{- range $i, $port := $nodepool.openPort }}
+- {{ $port }}
+{{- end }}
+{{- end }}
+{{- if $nodepool.privateAddressOnly }}
+privateAddressOnly: {{ $nodepool.privateAddressOnly }}
+{{- end }}
+{{- if $nodepool.region }}
+region: {{ $nodepool.region }}
+{{- end }}
+{{- if $nodepool.requestSpotInstance }}
+requestSpotInstance: {{ $nodepool.requestSpotInstance }}
+{{- end }}
+{{- if $nodepool.retries }}
+retries: {{ $nodepool.retries }}
+{{- end }}
+{{- if $nodepool.rootSize }}
+rootSize: {{ $nodepool.rootSize }}
+{{- end }}
+{{- if $nodepool.createSecurityGroup }}
+securityGroup:
+- rancher-nodes
+{{- else if $nodepool.securityGroups }}
+securityGroup:
+{{ toYaml $nodepool.securityGroups }}
+{{- end }}
+{{- if $nodepool.securityGroupReadonly }}
+securityGroupReadonly: {{ $nodepool.securityGroupReadonly }}
+{{- end }}
+{{- if $nodepool.sessionToken }}
+sessionToken: {{ $nodepool.sessionToken }}
+{{- end }}
+{{- if $nodepool.spotPrice }}
+spotPrice: {{ $nodepool.spotPrice }}
+{{- end }}
+{{- if $nodepool.sshKeyContents }}
+sshKeyContents: {{ $nodepool.sshKeyContents }}
+{{- end }}
+{{- if $nodepool.sshUser }}
+sshUser: {{ $nodepool.sshUser }}
+{{- end }}
+{{- if $nodepool.subnetId }}
+subnetId: {{ $nodepool.subnetId }}
+{{- end }}
+{{- if $nodepool.tags }}
+tags: {{ $nodepool.tags }}
+{{- end }}
+{{- if $nodepool.useEbsOptimizedInstance }}
+useEbsOptimizedInstance: {{ $nodepool.useEbsOptimizedInstance }}
+{{- end }}
+{{- if $nodepool.usePrivateAddress }}
+usePrivateAddress: {{ $nodepool.usePrivateAddress }}
+{{- end }}
+{{- if $nodepool.userdata }}
+userdata: {{ $nodepool.userdata }}
+{{- end }}
+{{- if $nodepool.volumeType }}
+volumeType: {{ $nodepool.volumeType }}
+{{- end }}
+{{- if $nodepool.vpcId }}
+vpcId: {{ $nodepool.vpcId }}
+{{- end }}
+{{- if $nodepool.zone }}
+zone: {{ $nodepool.zone }}
+{{- end }}
+{{- end }}
+{{- end }}

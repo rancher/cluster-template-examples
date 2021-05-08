@@ -1,0 +1,96 @@
+{{- if eq .Values.cloudprovider "vsphere" }}
+{{- range $index, $nodepool := .Values.nodepools }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: VmwarevsphereConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+{{- if $nodepool.cfgparam }}
+cfgparam: {{ $nodepool.cfgparam }}
+{{- end }}
+cloneFrom: {{ $nodepool.cloneFrom }}
+cloudConfig: {{ $nodepool.cloudConfig }}
+cloudinit: {{ $nodepool.cloudinit }}
+contentLibrary: {{ $nodepool.contentLibrary }}
+cpuCount: {{ $nodepool.cpuCount }}
+creationType: {{ $nodepool.creationType }}
+customAttribute: {{ $nodepool.customAttribute }}
+datacenter: {{ $nodepool.datacenter }}
+datastore: {{ $nodepool.datastore }}
+datastoreCluster: {{ $nodepool.datastoreCluster }}
+diskSize: {{ $nodepool.diskSize }}
+folder: {{ $nodepool.folder }}
+hostsystem: {{ $nodepool.hostsystem }}
+memorySize: {{ $nodepool.memorySize }}
+network: {{ $nodepool.network }}
+pool: {{ $nodepool.pool }}
+sshPort: {{ $nodepool.sshPort }}
+sshUser: {{ $nodepool.sshUser }}
+sshUserGroup: {{ $nodepool.sshUserGroup }}
+tag: {{ $nodepool.tag }}
+vappIpallocationpolicy: {{ $nodepool.vappIpallocationpolicy }}
+vappIpprotocol: {{ $nodepool.vappIpprotocol }}
+vappProperty: {{ $nodepool.vappProperty }}
+vappTransport: {{ $nodepool.vappTransport }}
+vcenter: {{ $nodepool.vcenter }}
+vcenterPort: {{ $nodepool.vcenterPort }}
+---
+{{- end }}
+{{ $nodepool := .Values.nodepool }}
+{{- if $nodepool }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: VmwarevsphereConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+{{- if $nodepool.cfgparam }}
+cfgparam: {{ $nodepool.cfgparam }}
+{{- end }}
+cloneFrom: {{ $nodepool.cloneFrom }}
+cloudConfig: {{ $nodepool.cloudConfig }}
+cloudinit: {{ $nodepool.cloudinit }}
+contentLibrary: {{ $nodepool.contentLibrary }}
+cpuCount: {{ $nodepool.cpuCount }}
+creationType: {{ $nodepool.creationType }}
+customAttribute: {{ $nodepool.customAttribute }}
+datacenter: {{ $nodepool.datacenter }}
+datastore: {{ $nodepool.datastore }}
+datastoreCluster: {{ $nodepool.datastoreCluster }}
+diskSize: {{ $nodepool.diskSize }}
+folder: {{ $nodepool.folder }}
+hostsystem: {{ $nodepool.hostsystem }}
+memorySize: {{ $nodepool.memorySize }}
+network: {{ $nodepool.network }}
+pool: {{ $nodepool.pool }}
+sshPort: {{ $nodepool.sshPort }}
+sshUser: {{ $nodepool.sshUser }}
+sshUserGroup: {{ $nodepool.sshUserGroup }}
+tag: {{ $nodepool.tag }}
+vappIpallocationpolicy: {{ $nodepool.vappIpallocationpolicy }}
+vappIpprotocol: {{ $nodepool.vappIpprotocol }}
+vappProperty: {{ $nodepool.vappProperty }}
+vappTransport: {{ $nodepool.vappTransport }}
+vcenter: {{ $nodepool.vcenter }}
+vcenterPort: {{ $nodepool.vcenterPort }}
+{{- end }}
+{{- end }}
+
+

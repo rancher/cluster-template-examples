@@ -1,0 +1,135 @@
+cloudprovider: azure
+
+cloudCredentialSecretName: azure
+
+# Specify nodepool options. Can add multiple node groups, specify etcd, controlplane and worker roles.
+nodepools:
+- etcd: true
+  controlplane: true
+  worker: true
+
+  # specify node labels
+  labels: {}
+
+  # specify node taints
+  taints: {}
+
+  # specify nodepool size
+  quantity: 1
+
+  # Pause node pool
+  paused: false
+
+  # specify displayName
+  # displayName: ""
+
+  # specify rolling update mechanism
+  # rollingUpdate:
+  #   The maximum number of machines that can be unavailable during the update.
+  #   Value can be an absolute number (ex: 5) or a percentage of desired
+  #   machines (ex: 10%).
+  #   Absolute number is calculated from percentage by rounding down.
+  #   This can not be 0 if MaxSurge is 0.
+  #   Defaults to 0.
+  #   Example: when this is set to 30%, the old MachineSet can be scaled
+  #   down to 70% of desired machines immediately when the rolling update
+  #   starts. Once new machines are ready, old MachineSet can be scaled
+  #   down further, followed by scaling up the new MachineSet, ensuring
+  #   that the total number of machines available at all times
+  #   during the update is at least 70% of desired machines.
+  #   maxUnavailable: "5"
+  #   The maximum number of machines that can be scheduled above the
+  #   desired number of machines.
+  #   Value can be an absolute number (ex: 5) or a percentage of
+  #   desired machines (ex: 10%).
+  #   This can not be 0 if MaxUnavailable is 0.
+  #   Absolute number is calculated from percentage by rounding up.
+  #   Defaults to 1.
+  #   Example: when this is set to 30%, the new MachineSet can be scaled
+  #   up immediately when the rolling update starts, such that the total
+  #   number of old and new machines do not exceed 130% of desired
+  #   machines. Once old machines have been killed, new MachineSet can
+  #   be scaled up further, ensuring that total number of machines running
+  #   at any time during the update is at most 130% of desired machines.
+  #   maxSurge: "1"
+
+  # specify machineDeployment Labels
+  # machineDeploymentLabels: {}
+
+  # specify machineDeployment annotations
+  # machineDeploymentAnnotations: {}
+
+  # specify nodepool name
+  name: azure-nodepool-1
+
+  # Azure Availability Set to place the virtual machine into
+  # availabilitySet: docker-machine
+
+  # Azure Service Principal Account ID (optional, browser auth is used if not specified)
+  # clientId: ""
+
+  # File contents for customData
+  # customData: ""
+
+  # Disk size if using managed disk
+  # diskSize: "30"
+
+  # A unique DNS label for the public IP adddress
+  # dns: ""
+
+  # Azure environment (e.g. AzurePublicCloud, AzureChinaCloud)
+  # environment: AzurePublicCloud
+
+  # Fault domain count to use for availability set
+  # faultDomainCount: 3
+
+  # Azure virtual machine OS image
+  # image: "canonical:UbuntuServer:18.04-LTS:latest"
+
+  # Azure region to create the virtual machine
+  # location: westus
+
+  # Configures VM and availability set for managed disks
+  # managedDisks: false
+
+  # Do not create a public IP address for the machine
+  # noPublicIp: false
+
+  # Make the specified port number accessible from the Internet
+  # openPort: ["8080", "8443"]
+
+  # Specify a static private IP address for the machine
+  # privateIpAddress: ""
+
+  # Azure Resource Group name (will be created if missing)
+  # resourceGroup: "docker-machine"
+
+  # Size for Azure Virtual Machine
+  # size: Standard_D2_v2
+
+  # Username for SSH login
+  # sshUser: docker-user
+
+  # Assign a static public IP address to the machine
+  # staticPublicIp: false
+
+  # Type of Storage Account to host the OS Disk for the machine
+  # storageType: Standard_LRS
+
+  # Azure Subnet Name to be used within the Virtual Network
+  # subnet: docker-machine
+
+  # Private CIDR block to be used for the new subnet, should comply RFC 1918
+  # subnetPrefix: "192.168.0.0/16"
+
+  # Azure Subscription ID
+  # subscriptionId: ""
+
+  # Update domain count to use for availability set
+  # updateDomainCount: "5"
+
+  # Use private IP address of the machine to connect
+  # usePrivateIp: "false"
+
+  # Azure Virtual Network name to connect the virtual machine (in [resourcegroup:]name format)
+  # vnet: "docker-machine-vnet"

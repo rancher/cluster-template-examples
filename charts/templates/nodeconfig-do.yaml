@@ -1,0 +1,62 @@
+{{- if eq .Values.cloudprovider "digitalocean" }}
+{{- range $index, $nodepool := .Values.nodepools }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: DigitaloceanConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+backups: {{ $nodepool.backups }}
+image: {{ $nodepool.image }}
+ipv6: {{ $nodepool.ipv6 }}
+monitoring: {{ $nodepool.monitoring }}
+privateNetworking: {{ $nodepool.privateNetworking }}
+region: {{ $nodepool.region }}
+size: {{ $nodepool.size }}
+sshKeyContents: {{ $nodepool.sshKeyContents }}
+sshKeyFingerprint: {{ $nodepool.sshKeyFingerprint }}
+sshPort: {{ $nodepool.sshPort | quote }}
+sshUser: {{ $nodepool.sshUser }}
+tags: {{ $nodepool.tags }}
+userdata: {{ $nodepool.userdata }}
+---
+{{- end }}
+{{ $nodepool := .Values.nodepool }}
+{{- if $nodepool }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: DigitaloceanConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+backups: {{ $nodepool.backups }}
+image: {{ $nodepool.image }}
+ipv6: {{ $nodepool.ipv6 }}
+monitoring: {{ $nodepool.monitoring }}
+privateNetworking: {{ $nodepool.privateNetworking }}
+region: {{ $nodepool.region }}
+size: {{ $nodepool.size }}
+sshKeyContents: {{ $nodepool.sshKeyContents }}
+sshKeyFingerprint: {{ $nodepool.sshKeyFingerprint }}
+sshPort: {{ $nodepool.sshPort | quote }}
+sshUser: {{ $nodepool.sshUser }}
+tags: {{ $nodepool.tags }}
+userdata: {{ $nodepool.userdata }}
+{{- end}}
+{{- end }}
