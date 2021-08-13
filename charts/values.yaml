@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
   # specify cluster name
-  name: cluster-example
+  name: template-rke2
 
   # specify cluster labels
   labels: {}
@@ -10,12 +10,12 @@ cluster:
   annotations: {}
 
 # specify cloud credential secret name, do not need to be provided if using custom driver
-cloudCredentialSecretName: example
+cloudCredentialSecretName: ""
 
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
-cloudprovider: ""
+cloudprovider: "digitalocean"
 
-kubernetesVersion: "v1.21.0-alpha2+rke2r1"
+kubernetesVersion: ""
 
 # general RKE options
 rke:
