@@ -1,0 +1,95 @@
+{{- if eq .Values.cloudprovider "azure" }}
+{{- range $index, $nodepool := .Values.nodepools }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: AzureConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+availabilitySet: {{ $nodepool.availabilitySet }}
+clientId: {{ $nodepool.clientId }}
+customData: {{ $nodepool.customData }}
+diskSize: {{ $nodepool.diskSize }}
+dns: {{ $nodepool.dns }}
+environment: {{ $nodepool.environment }}
+faultDomainCount: {{ $nodepool.faultDomainCount }}
+image: {{ $nodepool.image }}
+location: {{ $nodepool.location }}
+managedDisks: {{ $nodepool.managedDisks }}
+noPublicIp: {{ $nodepool.noPublicIp }}
+{{- if $nodepool.openPort}}
+openPort: 
+{{- range $i, $port := $nodepool.openPort }}
+- {{ $port }}
+{{- end }}
+{{- end }}
+privateIpAddress: {{ $nodepool.privateIpAddress }}
+resourceGroup: {{ $nodepool.resourceGroup }}
+size: {{ $nodepool.size }}
+sshUser: {{ $nodepool.sshUser }}
+staticPublicIp: {{ $nodepool.staticPublicIp }}
+storageType: {{ $nodepool.storageType }}
+subnet: {{ $nodepool.subnet }}
+subnetPrefix: {{ $nodepool.subnetPrefix }}
+subscriptionId: {{ $nodepool.subscriptionId }}
+updateDomainCount: {{ $nodepool.updateDomainCount }}
+usePrivateIp: {{ $nodepool.usePrivateIp }}
+vnet: {{ $nodepool.vnet }}
+---
+{{- end }}
+{{ $nodepool := .Values.nodepool }}
+{{- if $nodepool }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: AzureConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+availabilitySet: {{ $nodepool.availabilitySet }}
+clientId: {{ $nodepool.clientId }}
+customData: {{ $nodepool.customData }}
+diskSize: {{ $nodepool.diskSize }}
+dns: {{ $nodepool.dns }}
+environment: {{ $nodepool.environment }}
+faultDomainCount: {{ $nodepool.faultDomainCount }}
+image: {{ $nodepool.image }}
+location: {{ $nodepool.location }}
+managedDisks: {{ $nodepool.managedDisks }}
+noPublicIp: {{ $nodepool.noPublicIp }}
+{{- if $nodepool.openPort}}
+openPort: 
+{{- range $i, $port := $nodepool.openPort }}
+- {{ $port }}
+{{- end }}
+{{- end }}
+privateIpAddress: {{ $nodepool.privateIpAddress }}
+resourceGroup: {{ $nodepool.resourceGroup }}
+size: {{ $nodepool.size }}
+sshUser: {{ $nodepool.sshUser }}
+staticPublicIp: {{ $nodepool.staticPublicIp }}
+storageType: {{ $nodepool.storageType }}
+subnet: {{ $nodepool.subnet }}
+subnetPrefix: {{ $nodepool.subnetPrefix }}
+subscriptionId: {{ $nodepool.subscriptionId }}
+updateDomainCount: {{ $nodepool.updateDomainCount }}
+usePrivateIp: {{ $nodepool.usePrivateIp }}
+vnet: {{ $nodepool.vnet }}
+{{- end }}
+{{- end }}
+

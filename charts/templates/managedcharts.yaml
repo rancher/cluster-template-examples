@@ -1,0 +1,50 @@
+{{- if .Values.monitoring.enabled }}
+apiVersion: management.cattle.io/v3
+kind: ManagedChart
+metadata:
+  name: monitoring-crd-{{ .Values.cluster.name }}
+  namespace: fleet-default
+spec:
+  chart: "rancher-monitoring-crd"
+  repoName: "rancher-charts"
+  releaseName: "rancher-monitoring-crd"
+  version: {{ .Values.monitoring.version }}
+  {{- if .Values.monitoring.values }}
+  values: 
+{{ toYaml .Values.monitoring.values | indent 4 }}
+  {{- end }}
+  defaultNamespace: "cattle-monitoring-system"
+  targets:
+  - clusterName: {{ .Values.cluster.name }}
+---
+apiVersion: management.cattle.io/v3
+kind: ManagedChart
+metadata:
+  name: monitoring-{{ .Values.cluster.name }}
+  namespace: fleet-default
+spec:
+  chart: "rancher-monitoring"
+  repoName: "rancher-charts"
+  releaseName: "rancher-monitoring"
+  version: {{ .Values.monitoring.version }}
+  {{- if .Values.monitoring.values }}
+  values: 
+{{ toYaml .Values.monitoring.values | indent 4 }}
+  {{- end }}
+  diff:
+    comparePatches:
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      kind: MutatingWebhookConfiguration
+      name: rancher-monitoring-admission
+      jsonPointers:
+      - /webhooks/0/failurePolicy
+    - apiVersion: admissionregistration.k8s.io/v1beta1
+      kind: ValidatingWebhookConfiguration
+      name: rancher-monitoring-admission
+      jsonPointers:
+      - /webhooks/0/failurePolicy
+  defaultNamespace: "cattle-monitoring-system"
+  targets:
+  - clusterName: {{ .Values.cluster.name }}
+---
+{{- end }}

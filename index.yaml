@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  cluster-template:
+  - annotations:
+      catalog.cattle.io/namespace: fleet-default
+      catalog.cattle.io/type: cluster-template
+    apiVersion: v1
+    created: "2021-08-13T10:29:10.631635-07:00"
+    description: Cluster template for rke2
+    digest: d3a3763369a72ab7f8684087039922d8c0a1af4c1fdf3e96ffdf02c5a62fecd9
+    name: cluster-template
+    urls:
+    - cluster-template-0.0.1.tgz
+    version: 0.0.1
+generated: "2021-08-13T10:29:10.630636-07:00"

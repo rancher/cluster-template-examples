@@ -1,0 +1,141 @@
+cloudprovider: vsphere
+
+cloudCredentialSecretName: vsphere
+
+# Specify nodepool options. Can add multiple node groups, specify etcd, controlplane and worker roles.
+nodepools:
+- etcd: true
+  controlplane: true
+  worker: true
+
+  # specify node labels
+  labels: {}
+
+  # specify node taints
+  taints: {}
+
+  # specify nodepool size
+  quantity: 1
+
+  # Pause node pool
+  paused: false
+
+  # specify displayName
+  # displayName: ""
+
+  # specify rolling update mechanism
+  # rollingUpdate:
+  #   The maximum number of machines that can be unavailable during the update.
+  #   Value can be an absolute number (ex: 5) or a percentage of desired
+  #   machines (ex: 10%).
+  #   Absolute number is calculated from percentage by rounding down.
+  #   This can not be 0 if MaxSurge is 0.
+  #   Defaults to 0.
+  #   Example: when this is set to 30%, the old MachineSet can be scaled
+  #   down to 70% of desired machines immediately when the rolling update
+  #   starts. Once new machines are ready, old MachineSet can be scaled
+  #   down further, followed by scaling up the new MachineSet, ensuring
+  #   that the total number of machines available at all times
+  #   during the update is at least 70% of desired machines.
+  #   maxUnavailable: "5"
+  #   The maximum number of machines that can be scheduled above the
+  #   desired number of machines.
+  #   Value can be an absolute number (ex: 5) or a percentage of
+  #   desired machines (ex: 10%).
+  #   This can not be 0 if MaxUnavailable is 0.
+  #   Absolute number is calculated from percentage by rounding up.
+  #   Defaults to 1.
+  #   Example: when this is set to 30%, the new MachineSet can be scaled
+  #   up immediately when the rolling update starts, such that the total
+  #   number of old and new machines do not exceed 130% of desired
+  #   machines. Once old machines have been killed, new MachineSet can
+  #   be scaled up further, ensuring that total number of machines running
+  #   at any time during the update is at most 130% of desired machines.
+  #   maxSurge: "1"
+
+  # specify machineDeployment Labels
+  # machineDeploymentLabels: {}
+
+  # specify machineDeployment annotations
+  # machineDeploymentAnnotations: {}
+
+  # specify nodepool name
+  name: vsphere-nodepool-1
+
+  # vSphere vm configuration parameters (used for guestinfo)
+  # cfgparam: []
+
+  # If you choose creation type clone a name of what you want to clone is required
+  # cloneFrom: ""
+
+  # Filepath to a cloud-config yaml file to put into the ISO user-data
+  # cloudConfig: ""
+
+  # vSphere cloud-init filepath or url to add to guestinfo, filepath will be read and base64 encoded before adding
+  # cloudinit: ""
+
+  # If you choose to clone from a content library template specify the name of the library
+  # contentLibrary: ""
+
+  # vSphere CPU number for docker VM
+  cpuCount: "2"
+
+  # 'Creation type when creating a new virtual machine. Supported values: vm, template, library, legacy'
+  creationType: "vm"
+
+  # vSphere custom attribute, format key/value e.g. '200=mycustom value'
+  # customAttribute: ["200=mycustom value"]
+
+  # vSphere datacenter for virtual machine
+  # datacenter: ""
+
+  # vSphere datastore for virtual machine
+  # datastore: ""
+
+  # vSphere datastore cluster for virtual machine
+  # datastoreCluster: ""
+
+  # vSphere size of disk for docker VM (in MB)
+  diskSize: "20480"
+
+  # vSphere folder for the docker VM. This folder must already exist in the datacenter
+  # folder: ""
+
+  # vSphere compute resource where the docker VM will be instantiated. This can be omitted if using a cluster with DRS
+  # hostsystem: ""
+
+  # vSphere size of memory for docker VM (in MB)
+  # memorySize: "2048"
+
+  # vSphere network where the virtual machine will be attached
+  # network: ""
+
+  # vSphere resource pool for docker VM
+  # pool: ""
+
+  # If using a non-B2D image you can specify the ssh port
+  sshPort: "22"
+
+  # If using a non-B2D image the uploaded keys will need chown'ed, defaults to staff e.g. docker:staff
+  sshUserGroup: staff
+
+  # vSphere tag id e.g. urn:xxx
+  # tag: ["urn:xxx"]
+
+  # 'vSphere vApp IP allocation policy. Supported values are: dhcp, fixed, transient and fixedAllocated'
+  # vappIpallocationpolicy: ""
+
+  # 'vSphere vApp IP protocol for this deployment. Supported values are: IPv4 and IPv6'
+  # vappIpprotocol: ""
+
+  # vSphere vApp properties
+  # vappProperty: []
+
+  # 'vSphere OVF environment transports to use for properties. Supported values are: iso and com.vmware.guestInfo'
+  # vappTransport: ""
+
+  # vSphere IP/hostname for vCenter
+  # vcenter: ""
+
+  # vSphere Port for vCenter
+  vcenterPort: 443
