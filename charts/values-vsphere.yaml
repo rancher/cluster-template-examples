@@ -60,7 +60,7 @@ nodepools:
   # machineDeploymentAnnotations: {}
 
   # specify nodepool name
-  name: rke2-vsphere-helm-nodepool-1
+  #name: rke2-vsphere-helm-nodepool-1
 
   # vSphere vm configuration parameters (used for guestinfo)
   # cfgparam: []

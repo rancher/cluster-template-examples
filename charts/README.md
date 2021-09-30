@@ -8,11 +8,12 @@ Helm chart that can be used as rke2 cluster template
 # generate random id to build multiple clusters for testing
 export INSTANCE_PREFIX=rke2-vsphere-helm-demo-${RANDOM}
 
-helm install ${INSTANCE_PREFIX} ./charts \
+helm upgrade --install ${INSTANCE_PREFIX} ./charts \
   --namespace fleet-default \
   --values ./charts/values-vsphere.yaml \
   --set cluster.name=${INSTANCE_PREFIX} \
-  --set nodepools[0].name=${INSTANCE_PREFIX}-nodepool
+  --set nodepools[0].name=${INSTANCE_PREFIX}-nodepool \
+  --set nodepools[0].quantity=1 
   # --debug --dry-run
 ```
 
