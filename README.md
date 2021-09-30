@@ -146,7 +146,7 @@ rke:
 To provide your own configuration, modify the original values.yaml and create your own version, and pass it to helm. For example:
 
 ```bash
-helm install --namespace fleet-default --values ./charts/your-own-values.yaml do-cluster ./charts
+helm install --namespace fleet-default --values ./charts/values-vsphere.yaml rke2-vsphere-helm ./charts
 ```
 
 For different cloud provider options on nodepools, checkout

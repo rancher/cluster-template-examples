@@ -5,7 +5,15 @@ Helm chart that can be used as rke2 cluster template
 ### how to use
 
 ```bash
-helm install --namespace fleet-default --value ./your-values.yaml my-cluster ./charts
+# generate random id to build multiple clusters for testing
+export INSTANCE_PREFIX=rke2-vsphere-helm-demo-${RANDOM}
+
+helm install ${INSTANCE_PREFIX} ./charts \
+  --namespace fleet-default \
+  --values ./charts/values-vsphere.yaml \
+  --set cluster.name=${INSTANCE_PREFIX} \
+  --set nodepools[0].name=${INSTANCE_PREFIX}-nodepool
+  # --debug --dry-run
 ```
 
 General cluster options are available through [values.yaml](./values.yaml)
