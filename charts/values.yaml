@@ -15,7 +15,7 @@ cloudCredentialSecretName: "vsphere"
 # specify cloud provider, options are amazonec2, digitalocean, azure, vsphere or custom
 cloudprovider: "vsphere"
 
-kubernetesVersion: v1.21.4+rke2r2
+kubernetesVersion: "v1.21.4+rke2r2"
 
 # general RKE options
 rke:
