@@ -115,7 +115,7 @@ rke:
         foo: bar
 
   # enable local auth endpoint
-  localClusterAuthEndpoint: 
+  localClusterAuthEndpoint:
     enabled: false
   # specify fqdn of local access endpoint
   # fqdn: foo.bar.example
@@ -123,8 +123,8 @@ rke:
   # caCerts: ""
 
   # Specify upgrade options
-  upgradeStrategy: 
-    controlPlaneDrainOptions: 
+  upgradeStrategy:
+    controlPlaneDrainOptions:
       enabled: false
       # deleteEmptyDirData: false
       # disableEviction: false
@@ -154,6 +154,8 @@ For different cloud provider options on nodepools, checkout
 [Amazonec2](./charts/values-aws.yaml)
 
 [DigitalOcean](./charts/values-do.yaml)
+
+[Harvester](./charts/values-harvester.yaml)
 
 [Vsphere](./charts/values-vsphere.yaml)
 

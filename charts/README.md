@@ -18,4 +18,6 @@ For different cloud provider drivers:
 
 [Digitalocean](./values-do.yaml)
 
+[Harvester](./values-harvester.yaml)
+
 [Azure](./values-azure.yaml)

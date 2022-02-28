@@ -20,7 +20,7 @@ kubernetesVersion: ""
 # general RKE options
 rke:
   # enable local auth endpoint
-  localClusterAuthEndpoint: 
+  localClusterAuthEndpoint:
     enabled: false
   # specify fqdn of local access endpoint
   # fqdn: foo.bar.example
@@ -28,7 +28,7 @@ rke:
   # caCerts: ""
 
 # specify user principal ids to be assiged as cluster members
-# clusterMembers: 
+# clusterMembers:
 # - principalName: "local://u-z8zl5"
 #   roleTemplateName: "cluster-member"
 
@@ -40,5 +40,3 @@ monitoring:
   # specify cutsom values set
   # values:
   #   foo: bar
-
-
