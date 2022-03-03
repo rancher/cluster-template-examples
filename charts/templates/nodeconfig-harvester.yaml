@@ -1,0 +1,52 @@
+{{- if eq .Values.cloudprovider "harvester" }}
+{{- range $index, $nodepool := .Values.nodepools }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: HarvesterConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+diskSize: {{ $nodepool.diskSize | quote }}
+diskBus: {{ $nodepool.diskBus }}
+cpuCount: {{ $nodepool.cpuCount | quote }}
+memorySize: {{ $nodepool.memorySize | quote }}
+networkName: {{ $nodepool.networkName }}
+imageName: {{ $nodepool.imageName }}
+vmNamespace: {{ $nodepool.vmNamespace }}
+sshUser: {{ $nodepool.sshUser }}
+---
+{{- end }}
+{{ $nodepool := .Values.nodepool }}
+{{- if $nodepool }}
+apiVersion: rke-machine-config.cattle.io/v1
+kind: HarvesterConfig
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+common:
+{{- if $nodepool.labels }}
+  labels:
+{{ toYaml $nodepool.labels | indent 4 }}
+{{- end }}
+{{- if $nodepool.taints }}
+  taints:
+{{ toYaml $nodepool.taints | indent 4 }}
+{{- end }}
+diskSize: {{ $nodepool.diskSize | quote }}
+diskBus: {{ $nodepool.diskBus }}
+cpuCount: {{ $nodepool.cpuCount | quote }}
+memorySize: {{ $nodepool.memorySize | quote }}
+networkName: {{ $nodepool.networkName }}
+imageName: {{ $nodepool.imageName }}
+vmNamespace: {{ $nodepool.vmNamespace }}
+sshUser: {{ $nodepool.sshUser }}
+{{- end }}
+{{- end }}

@@ -8,7 +8,7 @@ metadata:
   {{- if .Values.cluster.annotations }}
   annotations:
 {{ toYaml .Values.cluster.annotations | indent 4 }}
-  {{- end }} 
+  {{- end }}
   name: {{ .Values.cluster.name }}
   namespace: fleet-default
 spec:
@@ -36,6 +36,8 @@ spec:
         kind: Amazonec2Config
         {{- else if eq $.Values.cloudprovider "vsphere" }}
         kind: VmwarevsphereConfig
+        {{- else if eq $.Values.cloudprovider "harvester" }}
+        kind: HarvesterConfig
         {{- else if eq $.Values.cloudprovider "digitalocean" }}
         kind: DigitaloceanConfig
         {{- else if eq $.Values.cloudprovider "azure" }}
@@ -45,16 +47,16 @@ spec:
       paused: {{ $nodepool.paused }}
       displayName: {{ $nodepool.displayName }}
       {{- if $nodepool.rollingUpdate }}
-      rollingUpdate: 
+      rollingUpdate:
         maxUnavailable: {{ $nodepool.rollingUpdate.maxUnavailable }}
         maxSurge: {{ $nodepool.rollingUpdate.maxSurge }}
       {{- end }}
       {{- if $nodepool.machineDeploymentLabels }}
-      machineDeploymentLabels: 
+      machineDeploymentLabels:
 {{ toYaml $nodepool.machineDeploymentLabels | indent 8 }}
       {{- end }}
       {{- if $nodepool.machineDeploymentAnnotations }}
-      machineDeploymentAnnotations: 
+      machineDeploymentAnnotations:
 {{ toYaml $nodepool.machineDeploymentAnnotations | indent 8 }}
       {{- end }}
       {{- end }}
@@ -71,6 +73,8 @@ spec:
         kind: Amazonec2Config
         {{- else if eq $.Values.cloudprovider "vsphere" }}
         kind: VmwarevsphereConfig
+        {{- else if eq $.Values.cloudprovider "harvester" }}
+        kind: HarvesterConfig
         {{- else if eq $.Values.cloudprovider "digitalocean" }}
         kind: DigitaloceanConfig
         {{- else if eq $.Values.cloudprovider "azure" }}
@@ -80,16 +84,16 @@ spec:
       paused: {{ $nodepool.paused }}
       displayName: {{ $nodepool.displayName }}
       {{- if $nodepool.rollingUpdate }}
-      rollingUpdate: 
+      rollingUpdate:
         maxUnavailable: {{ $nodepool.rollingUpdate.maxUnavailable }}
         maxSurge: {{ $nodepool.rollingUpdate.maxSurge }}
       {{- end }}
       {{- if $nodepool.machineDeploymentLabels }}
-      machineDeploymentLabels: 
+      machineDeploymentLabels:
 {{ toYaml $nodepool.machineDeploymentLabels | indent 8 }}
       {{- end }}
       {{- if $nodepool.machineDeploymentAnnotations }}
-      machineDeploymentAnnotations: 
+      machineDeploymentAnnotations:
 {{ toYaml $nodepool.machineDeploymentAnnotations | indent 8 }}
       {{- end }}
     {{- end }}
@@ -136,7 +140,7 @@ spec:
       # Add additional hostnames or IPv4/IPv6 addresses as Subject Alternative Names on the server TLS cert
       # tls-san: []
 
-    # workerConfig: 
+    # workerConfig:
     # - config:
         # Node name
         # node-name: ""
@@ -160,14 +164,14 @@ spec:
         # cloud-provider-name: ""
         # Cloud provider configuration file path
         # cloud-provider-config: ""
-    {{- if .Values.rke.localClusterAuthEndpoint.enabled }} 
+    {{- if .Values.rke.localClusterAuthEndpoint.enabled }}
     localClusterAuthEndpoint:
       enabled: {{ .Values.rke.localClusterAuthEndpoint.enabled }}
       fqdn: {{ .Values.rke.localClusterAuthEndpoint.fqdn }}
       caCerts: {{ .Values.rke.localClusterAuthEndpoint.caCerts }}
     {{- end }}
     upgradeStrategy:
-      controlPlaneDrainOptions: 
+      controlPlaneDrainOptions:
         enabled: false
         # deleteEmptyDirData: false
         # disableEviction: false
@@ -189,4 +193,3 @@ spec:
   agentEnvVars:
 {{ toYaml .Values.agentEnvs | indent 4 }}
 {{- end }}
-

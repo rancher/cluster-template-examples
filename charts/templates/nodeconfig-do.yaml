@@ -58,5 +58,5 @@ sshPort: {{ $nodepool.sshPort | quote }}
 sshUser: {{ $nodepool.sshUser }}
 tags: {{ $nodepool.tags }}
 userdata: {{ $nodepool.userdata }}
-{{- end}}
+{{- end }}
 {{- end }}
