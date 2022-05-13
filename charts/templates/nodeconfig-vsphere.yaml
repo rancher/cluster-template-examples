@@ -21,19 +21,19 @@ cloneFrom: {{ $nodepool.cloneFrom }}
 cloudConfig: {{ $nodepool.cloudConfig }}
 cloudinit: {{ $nodepool.cloudinit }}
 contentLibrary: {{ $nodepool.contentLibrary }}
-cpuCount: {{ $nodepool.cpuCount }}
+cpuCount: {{ $nodepool.cpuCount | quote }}
 creationType: {{ $nodepool.creationType }}
 customAttribute: {{ $nodepool.customAttribute }}
 datacenter: {{ $nodepool.datacenter }}
 datastore: {{ $nodepool.datastore }}
 datastoreCluster: {{ $nodepool.datastoreCluster }}
-diskSize: {{ $nodepool.diskSize }}
+diskSize: {{ $nodepool.diskSize | quote }}
 folder: {{ $nodepool.folder }}
 hostsystem: {{ $nodepool.hostsystem }}
-memorySize: {{ $nodepool.memorySize }}
+memorySize: {{ $nodepool.memorySize | quote }}
 network: {{ $nodepool.network }}
 pool: {{ $nodepool.pool }}
-sshPort: {{ $nodepool.sshPort }}
+sshPort: {{ $nodepool.sshPort | quote }}
 sshUser: {{ $nodepool.sshUser }}
 sshUserGroup: {{ $nodepool.sshUserGroup }}
 tag: {{ $nodepool.tag }}
@@ -42,7 +42,7 @@ vappIpprotocol: {{ $nodepool.vappIpprotocol }}
 vappProperty: {{ $nodepool.vappProperty }}
 vappTransport: {{ $nodepool.vappTransport }}
 vcenter: {{ $nodepool.vcenter }}
-vcenterPort: {{ $nodepool.vcenterPort }}
+vcenterPort: {{ $nodepool.vcenterPort | quote }}
 ---
 {{- end }}
 {{ $nodepool := .Values.nodepool }}
@@ -68,19 +68,19 @@ cloneFrom: {{ $nodepool.cloneFrom }}
 cloudConfig: {{ $nodepool.cloudConfig }}
 cloudinit: {{ $nodepool.cloudinit }}
 contentLibrary: {{ $nodepool.contentLibrary }}
-cpuCount: {{ $nodepool.cpuCount }}
+cpuCount: {{ $nodepool.cpuCount | quote }}
 creationType: {{ $nodepool.creationType }}
 customAttribute: {{ $nodepool.customAttribute }}
 datacenter: {{ $nodepool.datacenter }}
 datastore: {{ $nodepool.datastore }}
 datastoreCluster: {{ $nodepool.datastoreCluster }}
-diskSize: {{ $nodepool.diskSize }}
+diskSize: {{ $nodepool.diskSize | quote }}
 folder: {{ $nodepool.folder }}
 hostsystem: {{ $nodepool.hostsystem }}
-memorySize: {{ $nodepool.memorySize }}
+memorySize: {{ $nodepool.memorySize | quote }}
 network: {{ $nodepool.network }}
 pool: {{ $nodepool.pool }}
-sshPort: {{ $nodepool.sshPort }}
+sshPort: {{ $nodepool.sshPort | quote }}
 sshUser: {{ $nodepool.sshUser }}
 sshUserGroup: {{ $nodepool.sshUserGroup }}
 tag: {{ $nodepool.tag }}
