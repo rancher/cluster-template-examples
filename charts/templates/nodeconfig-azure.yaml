@@ -3,7 +3,7 @@
 apiVersion: rke-machine-config.cattle.io/v1
 kind: AzureConfig
 metadata:
-  name: {{ $nodepool.name }}
+  name: {{ $.Values.cluster.name }}-{{ $nodepool.name }}
   namespace: fleet-default
 common:
 {{- if $nodepool.labels }}
@@ -26,7 +26,7 @@ location: {{ $nodepool.location }}
 managedDisks: {{ $nodepool.managedDisks }}
 noPublicIp: {{ $nodepool.noPublicIp }}
 {{- if $nodepool.openPort}}
-openPort: 
+openPort:
 {{- range $i, $port := $nodepool.openPort }}
 - {{ $port }}
 {{- end }}
@@ -50,7 +50,7 @@ vnet: {{ $nodepool.vnet }}
 apiVersion: rke-machine-config.cattle.io/v1
 kind: AzureConfig
 metadata:
-  name: {{ $nodepool.name }}
+  name: {{ $.Values.cluster.name }}-{{ $nodepool.name }}
   namespace: fleet-default
 common:
 {{- if $nodepool.labels }}
@@ -73,7 +73,7 @@ location: {{ $nodepool.location }}
 managedDisks: {{ $nodepool.managedDisks }}
 noPublicIp: {{ $nodepool.noPublicIp }}
 {{- if $nodepool.openPort}}
-openPort: 
+openPort:
 {{- range $i, $port := $nodepool.openPort }}
 - {{ $port }}
 {{- end }}
