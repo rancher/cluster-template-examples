@@ -98,7 +98,7 @@ spec:
       {{- end }}
     {{- end }}
     {{- end }}
-    controlPlaneConfig:
+    machineGlobalConfig:
       # Path to the file that defines the audit policy configuration
       # audit-policy-file: ""
       # IPv4/IPv6 network CIDRs to use for pod IPs (default: 10.42.0.0/16)
@@ -140,7 +140,7 @@ spec:
       # Add additional hostnames or IPv4/IPv6 addresses as Subject Alternative Names on the server TLS cert
       # tls-san: []
 
-    # workerConfig:
+    # machineSelectorConfig:
     # - config:
         # Node name
         # node-name: ""
