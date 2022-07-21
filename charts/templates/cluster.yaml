@@ -22,6 +22,12 @@ spec:
   enableNetworkPolicy: true
   # specify rancher helm chart values deployed into downstream cluster
   # rancherValues: {}
+  {{- if .Values.rke.localClusterAuthEndpoint.enabled }}
+  localClusterAuthEndpoint:
+    enabled: {{ .Values.rke.localClusterAuthEndpoint.enabled }}
+    fqdn: {{ .Values.rke.localClusterAuthEndpoint.fqdn }}
+    caCerts: {{ .Values.rke.localClusterAuthEndpoint.caCerts }}
+  {{- end }}
   rkeConfig:
     {{- if ne .Values.cloudprovider "custom" }}
     machinePools:
@@ -164,12 +170,6 @@ spec:
         # cloud-provider-name: ""
         # Cloud provider configuration file path
         # cloud-provider-config: ""
-    {{- if .Values.rke.localClusterAuthEndpoint.enabled }}
-    localClusterAuthEndpoint:
-      enabled: {{ .Values.rke.localClusterAuthEndpoint.enabled }}
-      fqdn: {{ .Values.rke.localClusterAuthEndpoint.fqdn }}
-      caCerts: {{ .Values.rke.localClusterAuthEndpoint.caCerts }}
-    {{- end }}
     upgradeStrategy:
       controlPlaneDrainOptions:
         enabled: false
