@@ -72,7 +72,6 @@ nodepools:
   # cloudConfig: |
   #   #cloud-config
   #   <custom cloud-config>
-  # cloudConfig: ""
 
   # vSphere cloud-init filepath or url to add to guestinfo, filepath will be read and base64 encoded before adding
   # cloudinit: ""
