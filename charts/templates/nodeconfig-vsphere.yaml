@@ -18,7 +18,8 @@ common:
 cfgparam: {{ $nodepool.cfgparam }}
 {{- end }}
 cloneFrom: {{ $nodepool.cloneFrom }}
-cloudConfig: {{ $nodepool.cloudConfig }}
+cloudConfig: |
+{{ $nodepool.cloudConfig | indent 2 }}
 cloudinit: {{ $nodepool.cloudinit }}
 contentLibrary: {{ $nodepool.contentLibrary }}
 cpuCount: {{ $nodepool.cpuCount | quote }}
@@ -65,7 +66,8 @@ common:
 cfgparam: {{ $nodepool.cfgparam }}
 {{- end }}
 cloneFrom: {{ $nodepool.cloneFrom }}
-cloudConfig: {{ $nodepool.cloudConfig }}
+cloudConfig: |
+{{ $nodepool.cloudConfig | indent 2 }}
 cloudinit: {{ $nodepool.cloudinit }}
 contentLibrary: {{ $nodepool.contentLibrary }}
 cpuCount: {{ $nodepool.cpuCount | quote }}

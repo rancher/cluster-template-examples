@@ -68,7 +68,10 @@ nodepools:
   # If you choose creation type clone a name of what you want to clone is required
   # cloneFrom: ""
 
-  # Filepath to a cloud-config yaml file to put into the ISO user-data
+  # Contents of cloud-config yaml file to put into the ISO user-data; Format should be:
+  # cloudConfig: |
+  #   #cloud-config
+  #   <custom cloud-config>
   # cloudConfig: ""
 
   # vSphere cloud-init filepath or url to add to guestinfo, filepath will be read and base64 encoded before adding
