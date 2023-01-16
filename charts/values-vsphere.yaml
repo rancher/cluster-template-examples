@@ -17,6 +17,9 @@ nodepools:
   # specify nodepool size
   quantity: 1
 
+  # specify nodepool os (linux, windows)
+  os: linux
+
   # Pause node pool
   paused: false
 
@@ -64,7 +67,7 @@ nodepools:
 
   # vSphere vm configuration parameters (used for guestinfo)
   # cfgparam: []
-
+  # - disk.enableUUID=TRUE
   # If you choose creation type clone a name of what you want to clone is required
   # cloneFrom: ""
 
@@ -132,6 +135,9 @@ nodepools:
 
   # vSphere vApp properties
   # vappProperty: []
+  # - guestinfo.interface.0.ip.0.address=ip:vLan100_K8S
+  # - guestinfo.interface.0.ip.0.netmask=${netmask:vLan100_K8S}
+  # - guestinfo.interface.0.route.0.gateway=${gateway:vLan100_K8S}
 
   # 'vSphere OVF environment transports to use for properties. Supported values are: iso and com.vmware.guestInfo'
   # vappTransport: ""

@@ -9,6 +9,11 @@ cluster:
   # specify cluster annotations
   annotations: {}
 
+  # Add additional hostnames or IPv4/IPv6 addresses as Subject Alternative Names on the server TLS cert
+  # tlsSan:
+  #   - 10.10.10.10
+  #   - kube-api.example.com
+    
 # specify cloud credential secret name, do not need to be provided if using custom driver
 cloudCredentialSecretName: ""
 
@@ -22,6 +27,9 @@ rke:
   # enable local auth endpoint
   localClusterAuthEndpoint:
     enabled: false
+  machineSelectorConfig:
+    # - config:
+    #     system-default-registry: registry.example.com
   # specify fqdn of local access endpoint
   # fqdn: foo.bar.example
   # specify cacert of local access endpoint
@@ -31,6 +39,17 @@ rke:
 # clusterMembers:
 # - principalName: "local://u-z8zl5"
 #   roleTemplateName: "cluster-member"
+  registries:
+    # configs:
+    #   {}
+    #   authConfigSecretName: string
+    #      caBundle: string
+    #      insecureSkipVerify: boolean
+    #      tlsSecretName: string
+    # mirrors:
+    #   '*':
+    #     endpoint:
+    #       - https://registry.example.com
 
 # enable monitoring
 monitoring:

@@ -3,7 +3,7 @@
 apiVersion: rke-machine-config.cattle.io/v1
 kind: VmwarevsphereConfig
 metadata:
-  name: {{ $nodepool.name }}
+  name: nc-{{ $.Values.cluster.name }}-{{ $nodepool.name }}
   namespace: fleet-default
 common:
 {{- if $nodepool.labels }}
@@ -15,7 +15,8 @@ common:
 {{ toYaml $nodepool.taints | indent 4 }}
 {{- end }}
 {{- if $nodepool.cfgparam }}
-cfgparam: {{ $nodepool.cfgparam }}
+cfgparam:
+{{ toYaml $nodepool.cfgparam | indent 4 }}
 {{- end }}
 cloneFrom: {{ $nodepool.cloneFrom }}
 cloudConfig: |
@@ -33,6 +34,7 @@ folder: {{ $nodepool.folder }}
 hostsystem: {{ $nodepool.hostsystem }}
 memorySize: {{ $nodepool.memorySize | quote }}
 network: {{ $nodepool.network }}
+os: {{ $nodepool.os | default "linux"}}
 pool: {{ $nodepool.pool }}
 sshPort: {{ $nodepool.sshPort | quote }}
 sshUser: {{ $nodepool.sshUser }}
@@ -40,7 +42,8 @@ sshUserGroup: {{ $nodepool.sshUserGroup }}
 tag: {{ $nodepool.tag }}
 vappIpallocationpolicy: {{ $nodepool.vappIpallocationpolicy }}
 vappIpprotocol: {{ $nodepool.vappIpprotocol }}
-vappProperty: {{ $nodepool.vappProperty }}
+vappProperty: 
+{{ toYaml $nodepool.vappProperty | indent 4 }}
 vappTransport: {{ $nodepool.vappTransport }}
 vcenter: {{ $nodepool.vcenter }}
 vcenterPort: {{ $nodepool.vcenterPort | quote }}
@@ -51,7 +54,7 @@ vcenterPort: {{ $nodepool.vcenterPort | quote }}
 apiVersion: rke-machine-config.cattle.io/v1
 kind: VmwarevsphereConfig
 metadata:
-  name: {{ $nodepool.name }}
+  name: nc-{{ $.Values.cluster.name }}-{{ $nodepool.name }}
   namespace: fleet-default
 common:
 {{- if $nodepool.labels }}
@@ -63,7 +66,8 @@ common:
 {{ toYaml $nodepool.taints | indent 4 }}
 {{- end }}
 {{- if $nodepool.cfgparam }}
-cfgparam: {{ $nodepool.cfgparam }}
+cfgparam:
+{{ toYaml $nodepool.cfgparam | indent 4 }}
 {{- end }}
 cloneFrom: {{ $nodepool.cloneFrom }}
 cloudConfig: |
@@ -81,6 +85,7 @@ folder: {{ $nodepool.folder }}
 hostsystem: {{ $nodepool.hostsystem }}
 memorySize: {{ $nodepool.memorySize | quote }}
 network: {{ $nodepool.network }}
+os: {{ $nodepool.os | default "linux"}}
 pool: {{ $nodepool.pool }}
 sshPort: {{ $nodepool.sshPort | quote }}
 sshUser: {{ $nodepool.sshUser }}
@@ -88,7 +93,8 @@ sshUserGroup: {{ $nodepool.sshUserGroup }}
 tag: {{ $nodepool.tag }}
 vappIpallocationpolicy: {{ $nodepool.vappIpallocationpolicy }}
 vappIpprotocol: {{ $nodepool.vappIpprotocol }}
-vappProperty: {{ $nodepool.vappProperty }}
+vappProperty: 
+{{ toYaml $nodepool.vappProperty | indent 4 }}
 vappTransport: {{ $nodepool.vappTransport }}
 vcenter: {{ $nodepool.vcenter }}
 vcenterPort: {{ $nodepool.vcenterPort }}
