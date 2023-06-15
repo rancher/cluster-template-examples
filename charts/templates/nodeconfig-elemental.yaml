@@ -1,0 +1,22 @@
+{{- if eq .Values.cloudprovider "elemental" }}
+{{- range $index, $nodepool := .Values.nodepools }}
+apiVersion: elemental.cattle.io/v1beta1
+kind: MachineInventorySelectorTemplate
+metadata:
+  name: {{ $nodepool.name }}
+  namespace: fleet-default
+spec:
+  template:
+    metadata: {}
+    spec:
+      selector:
+        {{- with $nodepool.matchExpressions }}
+        matchExpressions:
+{{ toYaml . | indent 10 }}
+        {{- end }}
+        {{- with $nodepool.matchLabels }}
+        matchLabels:
+{{ toYaml . | indent 10}}
+        {{- end }}
+{{- end }}
+{{- end }}

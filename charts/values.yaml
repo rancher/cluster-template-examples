@@ -1,7 +1,7 @@
 # cluster specific values
 cluster:
-  # specify cluster name
-  name: template-rke2
+  # specify cluster name defaults to Release.Name
+  # name: template-rke2
 
   # specify cluster labels
   labels: {}
@@ -16,9 +16,9 @@ cloudCredentialSecretName: ""
 cloudprovider: "digitalocean"
 
 kubernetesVersion: ""
-
 # general RKE options
 rke:
+  enableNetworkPolicy: false
   # enable local auth endpoint
   localClusterAuthEndpoint:
     enabled: false
@@ -27,10 +27,81 @@ rke:
   # specify cacert of local access endpoint
   # caCerts: ""
 
+  # https://ranchermanager.docs.rancher.com/reference-guides/cluster-configuration/rancher-server-configuration/rke2-cluster-configuration#machineglobalconfig
+  machineGlobalConfig: {}
+    # Path to the file that defines the audit policy configuration
+    # audit-policy-file: ""
+    # IPv4/IPv6 network CIDRs to use for pod IPs (default: 10.42.0.0/16)
+    # cluster-cidr: ""
+    # IPv4 Cluster IP for coredns service. Should be in your service-cidr range (default: 10.43.0.10)
+    # cluster-dns: ""
+    # Cluster Domain (default: "cluster.local")
+    # cluster-domain: ""
+    # CNI Plugin to deploy, one of none, canal, cilium (default: "canal")
+    # cni: calico
+    # Do not deploy packaged components and delete any deployed components (valid items: rke2-coredns, rke2-ingress-nginx, rke2-kube-proxy, rke2-metrics-server)
+    # disable: false
+    # Disable automatic etcd snapshots
+    # etcd-disable-snapshots: false
+    # Expose etcd metrics to client interface. (Default false)
+    # etcd-expose-metrics: false
+    # Directory to save db snapshots. (Default location: ${data-dir}/db/snapshots)
+    # etcd-snapshot-dir: ""
+    # Set the base name of etcd snapshots. Default: etcd-snapshot-<unix-timestamp> (default: "etcd-snapshot")
+    # etcd-snapshot-name: ""
+    # Number of snapshots to retain (default: 5)
+    # etcd-snapshot-retention: 5
+    # Snapshot interval time in cron spec. eg. every 5 hours '* */5 * * *' (default: "0 */12 * * *")
+    # etcd-snapshot-schedule-cron: "0 */12 * * *"
+    # Customized flag for kube-apiserver process
+    # kube-apiserver-arg: ""
+    # Customized flag for kube-scheduler process
+    # kube-scheduler-arg: ""
+    # Customized flag for kube-controller-manager process
+    # kube-controller-manager-arg: ""
+    # Validate system configuration against the selected benchmark (valid items: cis-1.5, cis-1.6 )
+    # profile: "cis-1.6"
+    # Enable Secret encryption at rest
+    # secrets-encryption: false
+    # IPv4/IPv6 network CIDRs to use for service IPs (default: 10.43.0.0/16)
+    # service-cidr: "10.43.0.0/16"
+    # Port range to reserve for services with NodePort visibility (default: "30000-32767")
+    # service-node-port-range: "30000-32767"
+    # Add additional hostnames or IPv4/IPv6 addresses as Subject Alternative Names on the server TLS cert
+    # tls-san: []
+
+
 # specify user principal ids to be assiged as cluster members
 # clusterMembers:
 # - principalName: "local://u-z8zl5"
 #   roleTemplateName: "cluster-member"
+
+  # https://ranchermanager.docs.rancher.com/reference-guides/cluster-configuration/rancher-server-configuration/rke2-cluster-configuration#machineselectorconfig
+  # machineSelectorConfig:
+  # - config:
+  #     docker: false
+  #     protect-kernel-defaults: true
+  #     selinux: true
+
+  upgradeStrategy:
+    controlPlaneDrainOptions:
+      enabled: false
+      # deleteEmptyDirData: false
+      # disableEviction: false
+      # gracePeriod: 0
+      # ignoreErrors: false
+      # skipWaitForDeleteTimeoutSeconds: 0
+      # timeout: 0
+    workerDrainOptions:
+      enabled: false
+    # deleteEmptyDirData: false
+    # disableEviction: false
+    # gracePeriod: 0
+    # ignoreErrors: false
+    # skipWaitForDeleteTimeoutSeconds: 0
+    # timeout: 0
+  workerConcurrency: "10%"
+  controlPlaneConcurrency: "10%"
 
 # enable monitoring
 monitoring:
