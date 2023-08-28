@@ -24,10 +24,7 @@ spec:
     fqdn: {{ .Values.rke.localClusterAuthEndpoint.fqdn }}
     caCerts: {{ .Values.rke.localClusterAuthEndpoint.caCerts }}
   {{- end }}
-  # enable network policy
   enableNetworkPolicy: true
-  # specify rancher helm chart values deployed into downstream cluster
-  # rancherValues: {}
   rkeConfig:
     {{- if ne .Values.cloudprovider "custom" }}
     machinePools:
