@@ -3,7 +3,7 @@
 apiVersion: rke-machine-config.cattle.io/v1
 kind: HarvesterConfig
 metadata:
-  name: {{ $nodepool.name }}
+  name: {{ $.Values.cluster.name }}-{{ $nodepool.name }}
   namespace: fleet-default
 diskSize: {{ $nodepool.diskSize | quote }}
 diskBus: {{ $nodepool.diskBus }}
@@ -20,7 +20,7 @@ sshUser: {{ $nodepool.sshUser }}
 apiVersion: rke-machine-config.cattle.io/v1
 kind: HarvesterConfig
 metadata:
-  name: {{ $nodepool.name }}
+  name: {{ $.Values.cluster.name }}-{{ $nodepool.name }}
   namespace: fleet-default
 diskSize: {{ $nodepool.diskSize | quote }}
 diskBus: {{ $nodepool.diskBus }}

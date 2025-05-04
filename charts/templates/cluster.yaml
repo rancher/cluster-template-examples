@@ -49,7 +49,7 @@ spec:
         {{- else if eq $.Values.cloudprovider "azure" }}
         kind: AzureConfig
         {{- end}}
-        name: {{ $nodepool.name }}
+        name: {{ $.Values.cluster.name }}-{{ $nodepool.name }}
       paused: {{ $nodepool.paused }}
       displayName: {{ $nodepool.displayName }}
       {{- if $nodepool.rollingUpdate }}
@@ -94,7 +94,7 @@ spec:
         {{- else if eq $.Values.cloudprovider "azure" }}
         kind: AzureConfig
         {{- end}}
-        name: {{ $nodepool.name }}
+        name: {{ $.Values.cluster.name }}-{{ $nodepool.name }}
       paused: {{ $nodepool.paused }}
       displayName: {{ $nodepool.displayName }}
       {{- if $nodepool.rollingUpdate }}
